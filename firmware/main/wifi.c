@@ -51,28 +51,6 @@
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT      BIT1
 
-static const char *TAG_AP = "WiFi SoftAP";
-static const char *TAG_STA = "WiFi Station Webserver";
-
-static int s_retry_num = 0;
-
-/* FreeRTOS event group to signal when we are connected/disconnected */
-static EventGroupHandle_t s_wifi_event_group;
-
-static void wifi_event_handler(void *arg, esp_event_base_t event_base,
-                               int32_t event_id, void *event_data)
-{
-    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_AP_STACONNECTED) {
-        wifi_event_ap_staconnected_t *event = (wifi_event_ap_staconnected_t *) event_data;
-        ESP_LOGI(TAG_AP, "Station "MACSTR" joined, AID=%d",
-                 MAC2STR(event->mac), event->aid);
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_AP_STADISCONNECTED) {
-        wifi_event_ap_stadisconnected_t *event = (wifi_event_ap_stadisconnected_t *) event_data;
-        ESP_LOGI(TAG_AP, "Station "MACSTR" left, AID=%d",
-                 MAC2STR(event->mac), event->aid);
-    }
-}
-
 /* Initialize soft AP */
 void wifi_init_softap(void)
 {

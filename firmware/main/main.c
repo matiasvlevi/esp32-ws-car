@@ -9,8 +9,6 @@
 
 #include "webserver.h"
 
-static const char *TAG = "ESP32-CAR";
-
 /**
  * ENTRYPOINT
  */
