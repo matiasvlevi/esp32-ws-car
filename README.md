@@ -14,7 +14,7 @@ This repository contains:
 The firmware is meant to be used with an `ESP32-S3-DevKitC-1`, wired to a `l298` motor controller and an `HC-SR04` ultrasound sensor.
 
 <p align="center">
-	<img width="80%" src="./assets/Main.jpg"/>
+	<img width="55%" src="./assets/Main.jpg"/>
 </p>
 
 Close Up             |  Top View
