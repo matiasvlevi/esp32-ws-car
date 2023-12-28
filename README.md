@@ -40,7 +40,7 @@ We first need to establish a connection with our end device.
 
 ![mbot-begin](./assets/script-begin.png)
 
-We can use `oxenode-std-ws` to create a reference to a websocket and store it in a global variable.
+We can use the `Websocket Create` node from the `oxenode-std-ws` plugin to create a reference to a websocket and store it in a global variable.
 
 <br/>
 
@@ -48,11 +48,11 @@ We can use `oxenode-std-ws` to create a reference to a websocket and store it in
 
 We can use a `Switch` node to match keys to motor websocket commands
 
-To prevent spamming our end device with the same commands, we add an if codition checking if the key was repeated for the javascript event data.
+To prevent spamming our end device with the same commands, we add an if codition checking if the key was repeated.
 
 ![mbot-key](./assets/script-key.png)
 
-notice that we need to supply the socket reference since these blocks use WebSockets under the hood.
+notice that we need to supply the socket reference since the nodes in this plugin  use WebSockets under the hood.
 
 <br/>
 
