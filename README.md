@@ -1,13 +1,13 @@
 # esp32-ws-car
 
-This repository contains:
+This is proof of concept for my upcoming project [Oxenode](https://oxenode.io/).
+
+### Repository contains:
 
 * An esp32s3 firmware. 
  Provides a set of commands called through websocket buffers, allowing a web client to control the device. [See more](./firmware/README.md)
 
 * An [Oxenode](https://oxenode.io/) plugin. Provides bindings for sending instructions through websockets. Acts as a web client to the esp32 firmware. [See more](./oxenode/esp32-ws-car/README.md)
-
-This project is part of my larger project [Oxenode](https://oxenode.io/).
 
 <br/>
 
