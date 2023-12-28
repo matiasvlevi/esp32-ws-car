@@ -41,8 +41,8 @@
 #endif
 
 /* AP Configuration */
-#define ESP_WIFI_CHANNEL            1 // CONFIG_ESP_WIFI_AP_CHANNEL
-#define MAX_STA_CONN                12// CONFIG_ESP_MAX_STA_CONN_AP
+#define ESP_WIFI_CHANNEL            1 
+#define MAX_STA_CONN                12
 
 
 /* The event group allows multiple bits for each event, but we only care about two events:
@@ -99,9 +99,6 @@ void wifi_init_softap(void)
     printf("Wifi initialized. \n");
     printf("You can connect to the AP with SSID: %s and Password: %s\n", WIFI_SSID, WIFI_PASS);
 }
-
-
-
 
 void init_wifi(void)
 {

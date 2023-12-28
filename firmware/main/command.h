@@ -62,8 +62,20 @@ typedef enum mbot_commad {
 
 typedef unsigned char mbot_command_arg_t;
 
+/**
+ * Handle motor pwm specific commands 
+ *
+ * @param args The following buffer bytes
+ */
 void handle_motor_command(mbot_command_arg_t *args);
 
+/**
+ * Handle a parsed command buffer
+ *
+ * @param action The op code
+ * @param args The following bytes of the buffer
+ * @param ws_pkt A reference to the packet, to write a response.
+ */
 void mbot_handle_command(mbot_commad_t action, mbot_command_arg_t *args,
 						 httpd_ws_frame_t *ws_pkt);
 

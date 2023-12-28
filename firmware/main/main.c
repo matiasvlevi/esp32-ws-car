@@ -9,12 +9,11 @@
 
 #include "webserver.h"
 
-
-/* A simple example that demonstrates using websocket echo server
- */
 static const char *TAG = "ESP32-CAR";
 
-
+/**
+ * ENTRYPOINT
+ */
 void app_main(void)
 {
 	ESP_ERROR_CHECK(init_nvram());

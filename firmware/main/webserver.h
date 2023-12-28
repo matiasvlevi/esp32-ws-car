@@ -22,8 +22,16 @@ struct async_resp_arg {
 	int fd;
 };
 
+/**
+ * Clear cache
+ * 
+ * @return esp_err_t 
+ */
 esp_err_t init_nvram(void);
 
+/*
+ * Start the webserver
+ */
 void init_webserver(void);
 
 #endif /* _WEBSERVER_ */

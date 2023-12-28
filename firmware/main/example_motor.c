@@ -4,6 +4,16 @@
 #include "freertos/task.h"
 #include "motor.h"
 
+/**
+ * Unused function
+ *
+ * Acts as an example of the usage of 
+ * the motors with a pre-programmed simple routine 
+ *
+ * Oxenode could have an engine to transpile this code from a visual script.
+ * 
+ */
+
 void motor_example()
 {
 	mbot_motor_init();

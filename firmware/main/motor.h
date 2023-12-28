@@ -3,9 +3,7 @@
 #include <stdbool.h>
 
 /**
- *
  *  l298 Motor Driver
- *
  */
 /**
  * MCPWM GPIO pins
@@ -21,7 +19,6 @@ void mbot_motor_init_mcpwm(void);
 /**
  * Direction GPIO pins
  */
-
 #define MOTOR_LEFT_DDR_A 16
 #define MOTOR_LEFT_DDR_B 15
 

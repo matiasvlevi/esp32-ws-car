@@ -16,10 +16,6 @@
 
 static const char *TAG = "WEBSERVER";
 
-/*
- * This handler echos back the received ws data
- * and triggers an async send if certain message received
- */
 static esp_err_t echo_handler(httpd_req_t *req)
 {
 	if (req->method == HTTP_GET) {
