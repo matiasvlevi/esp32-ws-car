@@ -1,5 +1,5 @@
 {
-    "name": "mbot-esp32",
+    "name": "esp32-ws-car",
     "version": "0.0.1",
     "scripts": {
         "build": "webpack",

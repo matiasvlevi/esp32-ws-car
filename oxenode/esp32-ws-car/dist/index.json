@@ -1,7 +1,7 @@
 {
-    "name": "mbot-esp32",
+    "name": "esp32-ws-car",
     "version": "0.0.1",
-    "date": "2023-12-24",
+    "date": "2023-12-28",
     "blueprints": [
         "writePin",
         "pinMode",
