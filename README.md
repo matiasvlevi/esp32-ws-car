@@ -7,6 +7,8 @@ This repository contains:
 
 * An [Oxenode](https://oxenode.io/) plugin. Provides bindings for sending instructions through websockets. Acts as a web client to the esp32 firmware. [See more](./oxenode/esp32-ws-car/README.md)
 
+This project is part of my larger project [Oxenode](https://oxenode.io/).
+
 <br/>
 
 ## Robot & Hardware
@@ -66,3 +68,6 @@ We send a brake command to the end device when the user releases a key
 
 <br/>
 
+---
+
+License MIT
