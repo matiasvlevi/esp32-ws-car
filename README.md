@@ -1,4 +1,4 @@
-# mbot-esp32
+# esp32-ws-car
 
 This repository contains:
 
@@ -13,57 +13,56 @@ This repository contains:
 
 The firmware is meant to be used with an `ESP32-S3-DevKitC-1`, wired to a `l298` motor controller and an `HC-SR04` ultrasound sensor.
 
-![oxebot_angle](./assets/Main.jpg)
+<p align="center">
+	<img width="80%" src="./assets/Main.jpg"/>
+</p>
+
+Close Up             |  Top View
+:-------------------------:|:-------------------------:
+![](./assets/WireWrap.jpg)  |  ![](./assets/Top.jpg)
 
 <br/>
+
+
+
 
 ## Oxenode Client Script
 
+#### Plugin CDN
+
+```
+https://cdn.jsdelivr.net/gh/matiasvlevi/esp32-ws-car@latest/oxenode/esp32-ws-car
+```
+
 ### Websocket creation
+
+We first need to establish a connection with our end device.
 
 ![mbot-begin](./assets/script-begin.png)
 
-### Keyboard event (WASD controls)
+We can use `oxenode-std-ws` to create a reference to a websocket and store it in a global variable.
+
+<br/>
+
+### Key down event (WASD controls)
+
+We can use a `Switch` node to match keys to motor websocket commands
+
+To prevent spamming our end device with the same commands, we add an if codition checking if the key was repeated for the javascript event data.
 
 ![mbot-key](./assets/script-key.png)
 
-<br/>
-
-
-## Oxenode Plugin CDN
-
-Use this static CDN to include the plugin in [Oxenode](https://oxenode.io/)
-
-```
-https://cdn.jsdelivr.net/gh/matiasvlevi/mbot-esp32@latest/oxenode/mbot-esp32
-```
-
-> NOTE: The firmware does not support encryptes websockets (wss) yet, which makes it impossible to use it from a https client.
+notice that we need to supply the socket reference since these blocks use WebSockets under the hood.
 
 <br/>
 
-## Build & Upload Firmware
+### Key up event (Stopping motors)
 
-We are using the official esp-idf sdk, once installed, you can run the alias to get everything setup.
+Do not forget to add a way to stop.
 
-```
-get_idf
-```
+![mbot-key](./assets/script-keyup.png)
 
-#### Wifi Config
+We send a brake command to the end device when the user releases a key
 
-Edit `./main/wifi_cred.h` to match your wifi credentials.
+<br/>
 
-You can then use make to build and upload to the esp32
-
-####  Build
-
-```
-make build
-```
-
-####  Upload
-
-```
-make upload
-```

@@ -4,9 +4,15 @@ The firmware expects a set of instructions, through a websocket buffer.
 
 All instructions can accept arguments as bytes (the bytes after the Op Code byte). The length of arguments may vary with different instructions.
 
-This doc file mostly refers to `command.h` where the enum definition for Op codes can be found
+This is what a command looks like from a buffer
 
-> Some core bindings are missing, since they we're not used durring development. 
+| Op Byte | Arg1 | ArgX |
+|---------|------|------|
+|   `0x7F`  | `0x01`|   ...    |
+ 
+This doc file sources from `command.h` where the enum definition for Op codes can be found
+
+> Some core bindings are missing, since they were not used durring development. 
 
 <br/>
 <br/>
@@ -45,7 +51,7 @@ write to a GPIO pin
 
 <br/>
 
-## Motor Control Instruction
+## Motor Control
 
 Control motors through PWM
 
