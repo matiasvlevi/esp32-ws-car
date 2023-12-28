@@ -1,0 +1,14 @@
+{
+    "name": "mbot-esp32",
+    "version": "0.0.1",
+    "date": "2023-12-24",
+    "blueprints": [
+        "writePin",
+        "pinMode",
+        "motor_left_right",
+        "motor",
+        "led",
+        "distance_sensor"
+    ],
+    "icon": "FiShuffle"
+}
