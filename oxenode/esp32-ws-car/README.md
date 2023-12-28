@@ -14,10 +14,18 @@ Since the plugin is specific to this particular esp32 car prototype, it is not p
 
 Use this static CDN to include the plugin in [Oxenode](https://oxenode.io/)
 
-
-
 ```
 https://cdn.jsdelivr.net/gh/matiasvlevi/esp32-ws-car@latest/oxenode/esp32-ws-car
 ```
 
 <br/>
+
+## Install & Build
+
+```
+npm i
+```
+
+```
+npm run build
+```
