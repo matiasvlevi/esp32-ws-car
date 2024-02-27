@@ -1,23 +1,24 @@
-import { ContentProps, TriggerProps, port } from "@oxenode/core";
-import { NumberInput, Select } from "@oxenode/ui";
+import { ContentProps, TriggerProps, port, useNodeState } from "@oxenode/core";
+import { ErrorMessage, NumberInput, Select } from "@oxenode/ui";
 
 export const Name = "Pin Mode";
 
 export default function Content({ node }: ContentProps) {
+    const [mode, setMode] = useNodeState(node.id, 'mode', 1);
+    const [pin, setPin]   = useNodeState(node.id, 'pin', 12);
+
     return <>
         <h3>Pin Mode</h3>
         <span className="xsmall">Write digital state to pins</span>
 
         <NumberInput
-            nodeId={node.id}
-            name='gpioPin'
-            value='12'
-        />
+            value={pin}
+            onChange={e => setPin(e.target.value)}
+        />  
 
         <Select
-            nodeId={node.id}
-            name='mode'
-            value='1'
+            value={mode}
+            onChange={e => setMode(e.target.value)}
         >
             {/* 
                 Modes are according to the esp32 idf spec 
@@ -32,27 +33,22 @@ export default function Content({ node }: ContentProps) {
             <option value={(1 << 0) | (1 << 1)}>Input Output</option>
         </Select>
 
-        { node.State.err && <>
-            <span style={{ margin: '0.25rem', color: 'var(--red)'}}>
-                {node.State.err}
-            </span>
-        </> }
+        <ErrorMessage nodeId={node.id}/>
     </>;
 }
 
-export function Trigger({ node, controller, inputs: { socket }, state: { mode, gpioPin } }: TriggerProps) {
+export function Trigger({ node, controller, inputs: { socket }, state: { mode, pin } }: TriggerProps) {
 
     const commandBuffer = new Uint8Array([
-        0x7F,           // GPIO Control
-        gpioPin,        // GPIO Pin
-        +mode & 0x07    // Forward
+        0x7F,        // GPIO Control
+        pin,         // GPIO Pin
+        +mode & 0x07 // Forward
     ]);
 
     if (socket) socket.send(commandBuffer);
     else {
         node.State.err = 
             `Socket is not connected...`;
-
         controller.update(node);
 
         return controller.trigger(0);

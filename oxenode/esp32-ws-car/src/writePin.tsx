@@ -1,41 +1,38 @@
-import { ContentProps, TriggerProps, port } from "@oxenode/core";
-import { NumberInput, Select } from "@oxenode/ui";
+import { ContentProps, TriggerProps, port, useNodeState } from "@oxenode/core";
+import { ErrorMessage, NumberInput, Select } from "@oxenode/ui";
 
 export const Name = "Write Pin";
 
 export default function Content({ node }: ContentProps) {
+    const [mode, setMode] = useNodeState(node.id, 'mode', 1);
+    const [pin, setPin] = useNodeState(node.id, 'pin', 12);
+    
     return <>
         <h3>Write Pin</h3>
         <span className="xsmall">Write digital state to pins</span>
 
         <NumberInput
-            nodeId={node.id}
-            name='gpioPin'
-            value='12'
+            value={pin}
+            onChange={e => setPin(e.target.value)}
         />
 
         <Select
-            nodeId={node.id}
-            name='mode'
-            value='1'
+            value={mode}
+            onChange={e => setMode(e.target.value)}
         >
             <option value="1">HIGH</option>
             <option value="0">LOW</option>
         </Select>
 
-        { node.State.err && <>
-            <span style={{ margin: '0.25rem', color: 'var(--red)'}}>
-                {node.State.err}
-            </span>
-        </> }
+        <ErrorMessage nodeId={node.id}/>
     </>;
 }
 
-export function Trigger({ node, controller, inputs: { socket }, state: { mode, gpioPin } }: TriggerProps) {
+export function Trigger({ node, controller, inputs: { socket }, state: { mode, pin } }: TriggerProps) {
 
     const commandBuffer = new Uint8Array([
         0x80,        // GPIO Write
-        gpioPin,     // GPIO Pin
+        pin,     // GPIO Pin
         +mode & 1    // state
     ]);
 

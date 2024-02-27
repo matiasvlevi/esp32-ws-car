@@ -5,6 +5,7 @@ export const Name = "Distance Sensor";
 export default function Content({ node }: ContentProps) {
     return <>
         <h3>Distance (cm)</h3>
+        <span>Poor performance! </span>
         { node.State.err && <>
             <span style={{ margin: '0.25rem', color: 'var(--red)'}}>
                 {node.State.err}

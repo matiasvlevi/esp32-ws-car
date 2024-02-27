@@ -1,17 +1,20 @@
-import { ContentProps, TriggerProps, port } from "@oxenode/core";
-import { NumberInput, Select } from "@oxenode/ui";
+import { ContentProps, TriggerProps, port, useNodeState } from "@oxenode/core";
+import { ErrorMessage, NumberInput, Select } from "@oxenode/ui";
 
 export const Name = "Motor";
 
 export default function Content({ node }: ContentProps) {
+
+    const [mode, setMode] = useNodeState(node.id, 'mode', 1);
+    const [speed, setSpeed] = useNodeState(node.id, 'speed', 50);
+
     return <>
         <h3>Motor</h3>
         <span className="xsmall">Control motors</span>
 
         <Select
-            nodeId={node.id}
-            name='mode'
-            value='1'
+            value={mode}
+            onChange={e => setMode(e.target.value)}
         >
             <option value="FORWARD">Forward</option>
             <option value="LEFT">Turn Left</option>
@@ -21,16 +24,11 @@ export default function Content({ node }: ContentProps) {
         </Select>
 
         <NumberInput
-            nodeId={node.id}
-            name='speed'
-            value='50'
+            value={speed}
+            onChange={e => setSpeed(e.target.value)}
         />
 
-        { node.State.err && <>
-            <span style={{ margin: '0.25rem', color: 'var(--red)'}}>
-                {node.State.err}
-            </span>
-        </> }
+        <ErrorMessage nodeId={node.id}/>
     </>;
 }
 

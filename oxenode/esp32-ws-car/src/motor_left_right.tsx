@@ -1,9 +1,13 @@
-import { ContentProps, TriggerProps, port } from "@oxenode/core";
-import { NumberInput } from "@oxenode/ui";
+import { ContentProps, TriggerProps, port, useNodeState } from "@oxenode/core";
+import { ErrorMessage, NumberInput } from "@oxenode/ui";
 
 export const Name = "Motor Left Right";
 
 export default function Content({ node }: ContentProps) {
+
+    const [left,  setLeft]  = useNodeState(node.id, 'left', 50);
+    const [right, setRight] = useNodeState(node.id, 'right', 50);
+
     return <>
         <h3>Motors</h3>
         <div style={{
@@ -16,27 +20,21 @@ export default function Content({ node }: ContentProps) {
                 <span className="small">Left: </span>
 
                 <NumberInput
-                    nodeId={node.id}
-                    name='left'
-                    value='50'
+                    value={left}
+                    onChange={e => setLeft(e.target.value)}
                 />
             </div>
             <div>
                 <span className="small">Right: </span>
 
                 <NumberInput
-                    nodeId={node.id}
-                    name='right'
-                    value='50'
+                    value={right}
+                    onChange={e => setRight(e.target.value)}
                 />
             </div>
         </div>
 
-        { node.State.err && <>
-            <span style={{ margin: '0.25rem', color: 'var(--red)'}}>
-                {node.State.err}
-            </span>
-        </> }
+        <ErrorMessage nodeId={node.id}/>
     </>;
 }
 
